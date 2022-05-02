@@ -1,0 +1,38 @@
+<div>
+  <h4>Register New Book</h4>
+
+  <div class="row mt3">
+    <label for="title" class="col-form-label col-2">Title<span>*</span></label>
+    <input id="title" class="form-control col-6" [(ngModel)]="title">
+  </div>
+
+  <div class="row mt1">
+    <label for="book-category" class="col-form-label col-2">Category<span>*</span></label>
+    <input id="book-category" class="form-control col-6" [(ngModel)]="category">
+  </div>
+
+  <div class="row mt1">
+    <label for="book-author" class="col-form-label col-2">Author<span>*</span></label>
+    <input id="book-author" class="form-control col-6" [(ngModel)]="author">
+  </div>
+
+  <div class="row mt1">
+    <label for="book-price" class="col-form-label col-2">Price<span>*</span></label>
+    <input type="tel" id="book-price" class="form-control col-6" [(ngModel)]="price">
+  </div>
+
+  <div class="row mt1">
+    <label for="book-description" class="col-form-label col-2">Description </label>
+    <textarea id="book-description" class="form-control col-6" rows="10" [(ngModel)]="description"></textarea>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger col-8 mt1" role="alert">
+    {{errorMessage}}
+  </div>
+
+  <div class="row mt2">
+    <div class="col-6 mld"></div>
+    <button type="button" class="btn btn-outline-info col-1" (click)="clear()">Clear</button>
+    <button type="button" class="btn btn-info col-1 mli" (click)="addNewBook()">Save</button>
+  </div>
+</div>

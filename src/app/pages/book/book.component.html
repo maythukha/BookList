@@ -1,0 +1,56 @@
+<form>
+
+  <div class="input-group row">
+    <h2 class="col-3">Books</h2>
+    <input class="form-control col-6" #bookTitle (keyup.enter)="searchBook(bookTitle.value)" placeholder="Search Book by Title.....">
+    <div class="col-2"></div>
+    <button type="button" class="form-control btn btn-info col-1" (click)="collapse.toggle()"
+      [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+      Add Book
+    </button>
+  </div>
+
+  <!-- Add New Book Collapsed -->
+  <div>
+    <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+      <div class="card">
+        <div class="card-body">
+          <app-new-book (addBookEvent)="addNewBook($event)"></app-new-book>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Book Lists Table -->
+  <div *ngIf="books.length!=0" class="input-group book-table">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Title</th>
+          <th scope="col">Category</th>
+          <th scope="col">Author</th>
+          <th scope="col">Price</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            <a routerLink="/detail/{{book.id}}">
+              {{book.title}}
+            </a>
+          </td>
+          <td>{{ book.category }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.price| number }}</td>
+          <td>
+            <button type="button" class="btn btn-outline-danger" (click)="delete(book)">delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</form>
